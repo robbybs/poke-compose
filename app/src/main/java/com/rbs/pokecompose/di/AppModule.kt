@@ -3,7 +3,7 @@ package com.rbs.pokecompose.di
 import androidx.room.Room
 import com.rbs.pokecompose.data.local.PokeDatabase
 import com.rbs.pokecompose.data.local.UserPreferences
-import com.rbs.pokecompose.data.remote.PokemonApiService
+import com.rbs.pokecompose.data.remote.apiservice.PokemonApiService
 import com.rbs.pokecompose.data.repository.PokemonRepoImpl
 import com.rbs.pokecompose.data.repository.UserRepoImpl
 import com.rbs.pokecompose.domain.repository.PokemonRepository
@@ -56,14 +56,7 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    single<PokemonRepository> {
-        PokemonRepoImpl(
-            apiService = get(),
-            database = get(),
-            pokemonDao = get(),
-            remoteKeysDao = get()
-        )
-    }
+    single<PokemonRepository> { PokemonRepoImpl(get(), get()) }
     single<UserRepository> { UserRepoImpl(get(), get()) }
 }
 

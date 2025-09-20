@@ -2,9 +2,8 @@ package com.rbs.pokecompose.data.mapper
 
 import com.rbs.pokecompose.data.local.entity.DetailPokemonEntity
 import com.rbs.pokecompose.data.local.entity.PokemonEntity
-import com.rbs.pokecompose.data.remote.DetailPokemonResponse
-//import com.rbs.pokecompose.data.remote.DetailPokemonResponse
-import com.rbs.pokecompose.data.remote.ItemPokemon
+import com.rbs.pokecompose.data.remote.model.DetailPokemonResponse
+import com.rbs.pokecompose.data.remote.model.ItemPokemon
 import com.rbs.pokecompose.domain.model.DetailPokemon
 import com.rbs.pokecompose.domain.model.Pokemon
 

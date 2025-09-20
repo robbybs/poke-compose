@@ -1,4 +1,4 @@
-package com.rbs.pokecompose.data.remote
+package com.rbs.pokecompose.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 

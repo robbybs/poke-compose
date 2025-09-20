@@ -31,14 +31,10 @@ class ProfileViewModel(
     private fun loadUser() = viewModelScope.launch {
         try {
             val session = statusUseCase()
-            Log.d("ProfileVM", "Session: $session")
-
-            if (session.isLoggedIn) {
-                user = getUserUseCase(session.username)
-                Log.d("ProfileVM", "User loaded: $user")
+            user = if (session.isLoggedIn) {
+                getUserUseCase(session.username)
             } else {
-                Log.d("ProfileVM", "User not logged in")
-                user = null
+                null
             }
         } catch (e: Exception) {
             Log.e("ProfileVM", "Error loading user", e)
@@ -54,7 +50,6 @@ class ProfileViewModel(
         try {
             logoutUseCase()
             isLoggedOut = true
-            Log.d("ProfileVM", "Logout success")
         } catch (e: Exception) {
             Log.e("ProfileVM", "Logout failed", e)
         }

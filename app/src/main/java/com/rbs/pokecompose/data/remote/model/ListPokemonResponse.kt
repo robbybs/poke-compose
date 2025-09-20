@@ -1,6 +1,4 @@
-package com.rbs.pokecompose.data.remote
-
-import com.google.gson.annotations.SerializedName
+package com.rbs.pokecompose.data.remote.model
 
 data class ListPokemonResponse(
     val count: Int,

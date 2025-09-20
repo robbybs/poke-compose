@@ -27,11 +27,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.rbs.pokecompose.R
 import com.rbs.pokecompose.presentation.navigation.Routes
-import com.rbs.pokecompose.presentation.ui.feature.profile.ProfileViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -43,12 +44,10 @@ fun ProfileScreen(
     val user = viewModel.user
     val isLoggedOut = viewModel.isLoggedOut
 
-    // 🔹 Refresh user setiap kali masuk ke ProfileScreen
     LaunchedEffect(Unit) {
         viewModel.refreshUser()
     }
 
-    // 🔹 Jika logout berhasil, arahkan ke login
     LaunchedEffect(isLoggedOut) {
         if (isLoggedOut) {
             navController.navigate(Routes.LOGIN) {
@@ -75,7 +74,6 @@ fun ProfileScreen(
                         .padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    // Avatar huruf pertama nama
                     Box(
                         modifier = Modifier
                             .size(120.dp)
@@ -118,24 +116,25 @@ fun ProfileScreen(
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ExitToApp,
-                    contentDescription = "Logout",
+                    contentDescription = stringResource(R.string.logout_description),
                     modifier = Modifier.padding(end = 8.dp)
                 )
-                Text("Logout")
+                Text(stringResource(R.string.logout))
             }
         } else {
-            // Kalau user null → tampilkan empty state
             Text(
-                text = "User not found",
+                text = stringResource(R.string.user_not_found),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
-            Button(onClick = {
-                navController.navigate(Routes.LOGIN) {
-                    popUpTo(Routes.HOME) { inclusive = true }
+            Button(
+                onClick = {
+                    navController.navigate(Routes.LOGIN) {
+                        popUpTo(Routes.HOME) { inclusive = true }
+                    }
                 }
-            }) {
-                Text("Go to Login")
+            ) {
+                Text(stringResource(R.string.go_to_login))
             }
         }
     }

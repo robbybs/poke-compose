@@ -1,5 +1,7 @@
-package com.rbs.pokecompose.data.remote
+package com.rbs.pokecompose.data.remote.apiservice
 
+import com.rbs.pokecompose.data.remote.model.DetailPokemonResponse
+import com.rbs.pokecompose.data.remote.model.ListPokemonResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
